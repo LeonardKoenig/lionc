@@ -346,7 +346,7 @@ instead of after line 5834?
 It will be seen that responsibility is
 quite widely distributed. The ``file''
 table entry is initialised by ``falloc''
-and ``openl''; the ``inode'' table entry,
+and ``open1''; the ``inode'' table entry,
 by ``iget'', ``ialloc'' and ``maknode''.
 
 Note that ``ialloc'' clears out the
@@ -375,7 +375,7 @@ one, because there is a mismatch
 between the user programming conventions and the internal data representations.)
 
 
-\sbs{openl revisited}
+\sbs{open1 revisited}
 
 ``trf'' is now zero, so access permissions are checked (5813) but the existing file (if any) is not deallocated
 (5824).
