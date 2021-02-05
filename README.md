@@ -11,6 +11,7 @@ for deeper understanding.
 This is the code for the latter document, the source code
 listing can be retrieved from [cuzco.com](http://v6.cuzuco.com/).
 
+
 ## History of this document
 
 This repository contains a copy of
@@ -27,7 +28,70 @@ several forms, see
 [lemis.com](http://www.lemis.com/grog/Documentation/Lions/index.php)
 for details.
 
-Greg also published an Errata document by Brian Foley.
+Greg also published an Errata document by Brian Foley, see the next section for details.
+
+
+## Original Errata List
+
+This is a copy of the
+[errata by Brian Foley](http://www.lemis.com/grog/Documentation/Lions/errata.php),
+which I went through and confirmed and applied if applicable:
+
+* p.8 "valid r)art of a page." should be "valid part of a page."
+* p.12 Half way down RHS column (p->p wchan == c) should be (p->p_wchan == c)
+* p.13 (u.u_error) = bp->b_error) has an extra internal ')'
+* p.15 Example 13 (p->p ttyp == tp) should be (p->p_ttyp == tp)
+* p.16 Example 16 rip->i_addr[0].d major; should be rip->i_addr[0].d_major;
+* p.16 'hiqh order' should be 'high order'; 'onlv two' should be 'only two'
+* p.18 4.3 'C' Preprocessor should be "C" Preprocessor for consistency with "C" elsewhere:  
+  I didn't apply this, as the original is inconsistent in the same way.
+  Before "fixing" inconsistencies like that I'd like to create a version that's
+  close to identical.
+* p.19 'which are define' should be 'which are #defined':  
+  This was applied, but the original doesn't use '#' here.
+* p.20 '"or software interrupts" These' is missing a '.' before 'These'
+* p.20 '"b_error" All these' is missing a '.' before 'All these'
+* p.20 sys2.c item is missing final '.'
+* p.22 'It also comtains' should be 'It also contains'
+* p.24 In 5.7 there are 3 refs to 'xl' (one appears in the ASCII art too),
+* they should be 'x1'
+* p.25 More 'xl' instead of 'x1' (you can see these are definitely typos: see
+* 'while (1)' at the bottom of LHS of p.25 to see what a real 1 looks like)
+* p.30 "cint" (82l4) should be "cint" (8214)
+* p.30 1627 is misformatted:  
+  Comparing with my copy didn't show any misformatting.
+* p.31 PSWP == 100 should be PSWP = -100
+* p.31 "sureg is a routine 1738) should be "sureg is a routine (1738)
+* p.52 'sysl.c' should be 'sys1.c'
+* p.60 'sysl.c' should be 'sys1.c'
+* p.71 'openl' should be 'open1'
+* p.72 'disporition' should be 'disposition'
+* p.72 'openl' should be 'open1'
+* p.73 5832 'in cae' should be 'in case'
+* p.73 'openl' should be 'open1' twice.
+* p.74 'trapl' should be 'trap1'
+* p.74 'f offset' should be 'f_offset' (twice)
+* p.77 'tw distinct' should be 'two distinct'
+* p.77 'sysem function' should be 'system function'
+* p.77 'thee may be' should be 'there may be'
+* p.78 7600 (b) 'ard' should be 'and'
+* p.78 7607 'fIag' should be 'flag'
+* p.78 'Save the device identiy temporarily' prob should be preceeded by 7662
+* p.79 Under wdir, "u.u offset" should be "u.u_offset"
+* p.80 "openl" should be "open1"
+* p.80 "suer-user" should be "super-user"
+* p.82 6103 "mp->m bufp" should be "mp->m_bufp"
+* p.84 20.11 and 20.13 'openl' should be 'open1'
+* p.84 6971 'next group of' should be 'next group of blocks;'?:  
+  I applied this, but the actual change is 'next group of 100 free blocks;'
+* p.84 I don''t quite get the superblock free block list arrangement:  
+  I compared with the original and the text is identical.
+* p.85 'statl' should be 'stat1'
+* p.88 '1000 charaeters per second' should be '1000 characters per second
+* p.98 24.12 'interrupt doubiet' should be 'interrupt doublet'
+* p.106 1.4 'memory aliocation' should be 'memory allocation'
+* p.107 4.6 'ana decrease' should be 'and decrease'
+
 
 ## Original Readme
 
