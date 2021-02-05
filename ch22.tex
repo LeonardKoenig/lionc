@@ -323,7 +323,7 @@ to send a string of characters to the
 printer. In turn it calls ``lpcanon''
 which calls ``lpoutput''. If at any point
 too many characters are stored away,
-the procss will ``sleep'' in ``lpoutput''.
+the process will ``sleep'' in ``lpoutput''.
 Sooner or later ``lpoutput'' will continue, will store the character in a
 buffer area, and will then call
 ``lpstart'' to send, if possible, a
