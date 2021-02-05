@@ -6,3 +6,5 @@
 *.json
 *.toc
 *.dvi
+.aspell.en.pws
+.ispell_english
