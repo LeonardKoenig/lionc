@@ -8,3 +8,6 @@
 *.dvi
 .aspell.en.pws
 .ispell_english
+.missspelled_*
+missspelled
+wordlist

@@ -26,12 +26,14 @@ lionc.dvi: ${SRC}
 
 
 # Construct the directories from wordlist(s)
+wordlist: words_en words_names words_persons words_code words_orgs
+	cat $^ > $@
 .aspell.en.pws: wordlist
 	echo 'personal_ws-1.1 en 100' > $@
 	cat $^ >> $@
 
 .ispell_english: wordlist
-	cat $^ >> $@
+	cat $^ > $@
 
 # Don't call this directly, since suffix rules cannot depend on additional
 # prerequisites, like the spellcheck file.
@@ -42,6 +44,13 @@ aspell: .aspell.en.pws $(TEX) $(TEX:.tex=.aspell)
 ispell: .ispell_english $(TEX)
 	ispell -t $(TEX)
 spellcheck: aspell ispell
+
+.missspelled_a: .aspell.en.pws
+	cat $(TEX) | aspell -d en -t -p ./$^ list | sort -u > $@
+.missspelled_i: .ispell_english
+	cat $(TEX) | ispell -t -l list | sort -u > $@
+missspelled: .missspelled_i .missspelled_a
+	comm -12 $^ | sort -u > missspelled
 
 clean:
 	rm -f *.dvi *.ps *.pdf *.toc *.log *.aux
