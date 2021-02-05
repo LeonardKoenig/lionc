@@ -38,19 +38,27 @@ wordlist: words_en words_names words_persons words_code words_orgs
 # Don't call this directly, since suffix rules cannot depend on additional
 # prerequisites, like the spellcheck file.
 .tex.aspell:
-	aspell -c -t $^
+	aspell -d en -p ./.aspell.en.pws -c -t $^
 
 aspell: .aspell.en.pws $(TEX) $(TEX:.tex=.aspell)
 ispell: .ispell_english $(TEX)
-	ispell -t $(TEX)
+	ispell -t $^ $(TEX)
 spellcheck: aspell ispell
 
-.missspelled_a: .aspell.en.pws
-	cat $(TEX) | aspell -d en -t -p ./$^ list | sort -u > $@
-.missspelled_i: .ispell_english
-	cat $(TEX) | ispell -t -l list | sort -u > $@
-missspelled: .missspelled_i .missspelled_a
-	comm -12 $^ | sort -u > missspelled
+.missspelled_a: .aspell.en.pws $(TEX)
+	cat $(TEX) | aspell -t -d en -p ./.aspell.en.pws list | sort -u > $@
+.missspelled_da: .aspell.en.pws $(TEX)
+	detex lionc.tex | aspell -d en -p ./.aspell.en.pws list | sort -u > $@
+.missspelled_i: .ispell_english $(TEX)
+	cat $(TEX) | ispell -t -l | sort -u > $@
+.missspelled_di: .ispell_english $(TEX)
+	detex lionc.tex | ispell -l | sort -u > $@
+.missspelled_d: .missspelled_da .missspelled_di
+	comm -12 $^ | sort -u > $@
+.missspelled_x: .missspelled_i .missspelled_a
+	comm -12 $^ | sort -u > $@
+missspelled: .missspelled_d .missspelled_x
+	comm -12 $^ | sort -u > $@
 
 clean:
 	rm -f *.dvi *.ps *.pdf *.toc *.log *.aux
